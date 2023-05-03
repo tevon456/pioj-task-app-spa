@@ -111,7 +111,7 @@ export default function Dashboard() {
           transition: background var(--animation-time);
         `}
       >
-        <Content.AppShell>
+        <Content.AppShell router={router}>
           <Content.SubPage
             title="Tasks"
             actions={

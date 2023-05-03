@@ -1,22 +1,22 @@
 import "styled-components/macro";
 
+import { Box, Flex, Text } from "../ui-core";
 import { CheckSquareOffset, UsersThree } from "@phosphor-icons/react";
 import { useBackground, useWindowSize } from "../../hooks";
 
 import Link from "next/link";
 import paths from "../../utils/paths";
 import { useRouter } from "next/router";
-import { Box, Flex, Text } from "../ui-core";
 
-export default function AppShell({ children }) {
-  const router = useRouter();
+export default function AppShell({ router, children }) {
+  // const router = useRouter();
   const windowSize = useWindowSize();
 
-  const activeLinkMatch = (match) => {
+  const activeLinkMatch = (match, router) => {
     const baseSplitter = "/dashboard";
     const slashRemovedMatchPath = match.split(baseSplitter)[1] || baseSplitter;
 
-    let subDir = router.pathname
+    let subDir = router?.pathname
       .split(baseSplitter)[1]
       .split("/")
       .map((path) => {
@@ -24,7 +24,7 @@ export default function AppShell({ children }) {
       })
       .slice(1);
 
-    if (baseSplitter === match && router.pathname === match) {
+    if (baseSplitter === match && router?.pathname === match) {
       return "active";
     } else {
       return subDir.includes(slashRemovedMatchPath) ? "active" : "";
@@ -117,7 +117,7 @@ export default function AppShell({ children }) {
           </Box>
         </Flex>
       </Box>
-      {windowSize?.width < 460 && <BottomBar />}
+      {windowSize?.width < 460 && <BottomBar router={router} />}
     </Flex>
   );
 }
@@ -204,14 +204,14 @@ function BottomBarLinkItem({ href = "", text = "", children, ...rest }) {
   );
 }
 
-function BottomBar() {
-  const router = useRouter();
+function BottomBar({ router }) {
+  // const router = useRouter();
 
   const activeLinkMatch = (match) => {
     const baseSplitter = "/dashboard";
     const slashRemovedMatchPath = match.split(baseSplitter)[1] || baseSplitter;
 
-    let subDir = router.pathname
+    let subDir = router?.pathname
       .split(baseSplitter)[1]
       .split("/")
       .map((path) => {
@@ -219,7 +219,7 @@ function BottomBar() {
       })
       .slice(1);
 
-    if (baseSplitter === match && router.pathname === match) {
+    if (baseSplitter === match && router?.pathname === match) {
       return "active";
     } else {
       return subDir.includes(slashRemovedMatchPath) ? "active" : "";
