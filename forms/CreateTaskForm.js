@@ -15,7 +15,10 @@ const CreateTaskSchema = yup.object().shape({
     .oneOf(["not yet started", "in progress", "completed", "past due"]),
   description: yup.string().required(),
   dueDate: yup.date(),
-  employeeId: yup.string().nullable(),
+  employeeId: yup
+    .string()
+    .nullable()
+    .required("you need to assign an employee this task"),
 });
 
 const initialValues = {
@@ -68,7 +71,7 @@ function CreateTaskForm({ onSuccess = () => {} }) {
             value={values.title}
             label="Title"
             helper={touched.title && errors.title}
-            helperColor={errors?.title && "var(--danger)"}
+            helperColor={errors?.title && "var(--warning)"}
             name="title"
             mb="var(--space-md)"
           />
@@ -80,7 +83,7 @@ function CreateTaskForm({ onSuccess = () => {} }) {
             value={values.dueDate}
             label="Due date"
             helper={touched.dueDate && errors.dueDate}
-            helperColor={errors?.dueDate && "var(--danger)"}
+            helperColor={errors?.dueDate && "var(--warning)"}
             name="dueDate"
             type="date"
             mb="var(--space-md)"
@@ -93,7 +96,7 @@ function CreateTaskForm({ onSuccess = () => {} }) {
             value={values.employeeId}
             label="Assign Employee"
             helper={touched.employeeId && errors.employeeId}
-            helperColor={errors?.employeeId && "var(--danger)"}
+            helperColor={errors?.employeeId && "var(--warning)"}
             name="employeeId"
             mb="var(--space-md)"
             options={options}
@@ -106,7 +109,7 @@ function CreateTaskForm({ onSuccess = () => {} }) {
             value={values.description}
             label="Task description"
             helper={touched.description && errors.description}
-            helperColor={errors?.description ? "var(--danger)" : "initial"}
+            helperColor={errors?.description ? "var(--warning)" : "initial"}
             name="description"
             mb="var(--space-md)"
           />

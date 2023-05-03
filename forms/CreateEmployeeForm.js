@@ -48,7 +48,7 @@ function CreateEmployeeForm({ onSuccess = () => {} }) {
             value={values.name}
             label="Full name"
             helper={touched.name && errors.name}
-            helperColor={errors?.name && "var(--danger)"}
+            helperColor={errors?.name && "var(--warning)"}
             name="name"
             mb="var(--space-md)"
           />
@@ -61,7 +61,7 @@ function CreateEmployeeForm({ onSuccess = () => {} }) {
             defaultValue={new Date()}
             label="Department"
             helper={touched.department && errors.department}
-            helperColor={errors?.department && "var(--danger)"}
+            helperColor={errors?.department && "var(--warning)"}
             name="department"
             mb="var(--space-md)"
           />
