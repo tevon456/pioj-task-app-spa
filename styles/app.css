@@ -1,0 +1,53 @@
+@import url("./space.css");
+@import url("./color.css");
+@import url("./typography.css");
+
+:root {
+  --btn-font-size: 0.9em;
+  --animation: cubic-bezier(0.69, 0.03, 0.32, 0.84);
+  --animation-time: 0.6s;
+  --animation-duration: 0.5s;
+}
+
+body {
+  margin: 0;
+  background-color: var(--dark-page-background);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+*:focus {
+  box-shadow: 0 0 0 4px var(--focus-outline);
+  outline: 0;
+}
+
+::selection {
+  background: var(--selection-background);
+  color: var(--selection-color);
+}
+
+::-moz-selection {
+  background: var(--selection-background);
+  color: var(--selection-color);
+}
+
+.grid-center {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-help {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+}
