@@ -1,7 +1,6 @@
 import "../styles/app.css";
 
 import Head from "next/head";
-import { Toaster } from "sonner";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -26,7 +25,6 @@ export default function App({ Component, pageProps }) {
 
       <Component {...pageProps} />
       <div id="portal" />
-      <Toaster position="top-right" expand={true} />
     </>
   );
 }

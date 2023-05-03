@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 import { Formik } from "formik";
 import { db } from "../utils";
-import { toast } from "sonner";
 
 const UpdateTaskSchema = yup.object().shape({
   title: yup.string().required(),
@@ -47,13 +46,9 @@ function UpdateTaskForm({ onSuccess = () => {}, id, data }) {
       onSubmit={async (values) => {
         try {
           await db.task.update(id, values);
-          toast.success("Task updated successfully");
           onSuccess();
         } catch (error) {
           console.log(error);
-          toast.error(
-            "There was an error processing your request, try again later"
-          );
         }
       }}
     >

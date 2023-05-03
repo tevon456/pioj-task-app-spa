@@ -8,11 +8,11 @@ import Link from "next/link";
 import paths from "../../utils/paths";
 import { useRouter } from "next/router";
 
-export default function AppShell({ router, children }) {
-  // const router = useRouter();
+export default function AppShell({ children }) {
+  const router = useRouter();
   const windowSize = useWindowSize();
 
-  const activeLinkMatch = (match, router) => {
+  const activeLinkMatch = (match) => {
     const baseSplitter = "/dashboard";
     const slashRemovedMatchPath = match.split(baseSplitter)[1] || baseSplitter;
 
@@ -204,8 +204,8 @@ function BottomBarLinkItem({ href = "", text = "", children, ...rest }) {
   );
 }
 
-function BottomBar({ router }) {
-  // const router = useRouter();
+function BottomBar() {
+  const router = useRouter();
 
   const activeLinkMatch = (match) => {
     const baseSplitter = "/dashboard";

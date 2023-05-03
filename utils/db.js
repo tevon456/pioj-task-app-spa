@@ -1,9 +1,8 @@
 import { get, set } from "idb-keyval";
+import { isPast, parse } from "date-fns";
 
 import TinyDansk from "./tinyDansk";
-import { isPast, parse } from "date-fns";
 import { nanoid } from "nanoid";
-import { toast } from "sonner";
 
 const checkedStatus = (status, dueDate) => {
   if (status === "completed") {
@@ -33,7 +32,6 @@ const db = {
         }
       } catch (error) {
         console.log(error);
-        toast.error(`unable to create task`);
       }
     },
     read: async (id) => {
@@ -63,7 +61,6 @@ const db = {
         };
       } catch (error) {
         console.log(error);
-        toast.error(`unable to read task ${id}`);
       }
     },
     readAll: async () => {
@@ -92,7 +89,6 @@ const db = {
         return tasksWithEmployees;
       } catch (error) {
         console.log(error);
-        toast.error(`unable to read task(s)`);
       }
     },
     update: async (id, data) => {
@@ -108,7 +104,6 @@ const db = {
         await set("task", [...updateTask]);
       } catch (error) {
         console.log(error);
-        toast.error(`unable to update task with id ${id}`);
       }
     },
     destroy: async (id) => {
@@ -124,7 +119,6 @@ const db = {
         await set("task", [...updateTask]);
       } catch (error) {
         console.log(error);
-        toast.error(`unable to update task with id ${id}`);
       }
     },
   },
@@ -145,7 +139,6 @@ const db = {
         }
       } catch (error) {
         console.log(error);
-        toast.error(`unable to create employee`);
       }
     },
     read: async (id) => {
@@ -167,7 +160,6 @@ const db = {
         return { ...individual, tasks };
       } catch (error) {
         console.log(error);
-        toast.error(`unable to read employee ${id}`);
       }
     },
     readAll: async () => {
@@ -193,7 +185,6 @@ const db = {
         return employeesWithTasks;
       } catch (error) {
         console.log(error);
-        toast.error(`unable to read employee(s)`);
       }
     },
     update: async (id, data) => {
@@ -214,7 +205,6 @@ const db = {
         await set("employee", [...updateEmployee]);
       } catch (error) {
         console.log(error);
-        toast.error(`unable to update employee with id ${id}`);
       }
     },
     destroy: async (id) => {
@@ -234,7 +224,6 @@ const db = {
         await set("employee", [...updateEmployee]);
       } catch (error) {
         console.log(error);
-        toast.error(`unable to update employee with id ${id}`);
       }
     },
   },

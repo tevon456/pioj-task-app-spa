@@ -6,7 +6,6 @@ import { FormField, UICore } from "../components";
 
 import { Formik } from "formik";
 import { db } from "../utils";
-import { toast } from "sonner";
 
 const CreateEmployeeSchema = yup.object().shape({
   name: yup.string().required(),
@@ -26,13 +25,9 @@ function CreateEmployeeForm({ onSuccess = () => {} }) {
       onSubmit={async (values) => {
         try {
           await db.employee.create(values);
-          toast.success("Employee created successfully");
           onSuccess();
         } catch (error) {
           console.log(error);
-          toast.error(
-            "There was an error processing your request, try again later"
-          );
         }
       }}
     >

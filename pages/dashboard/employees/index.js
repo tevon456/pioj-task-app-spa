@@ -1,6 +1,5 @@
 import "styled-components/macro";
 
-import { AppShell, SubPage } from "../components";
 import {
   Asterisk,
   Buildings,
@@ -17,10 +16,11 @@ import { Content, UICore } from "../../../components";
 import { db, paths } from "../../../utils";
 import { useDialog, useRender } from "../../../hooks";
 import { useEffect, useState } from "react";
-import { parse } from "date-fns";
+
 import CreateEmployeeForm from "./forms/CreateEmployeeForm";
-import UpdateEmployeeForm from "./forms/UpdateEmployeeForm";
 import Head from "next/head";
+import UpdateEmployeeForm from "./forms/UpdateEmployeeForm";
+import { parse } from "date-fns";
 import { useRouter } from "next/router";
 
 export default function Dashboard() {
@@ -208,8 +208,8 @@ export default function Dashboard() {
           transition: background var(--animation-time);
         `}
       >
-        <AppShell>
-          <SubPage
+        <Content.AppShell>
+          <Content.SubPage
             title="Employees"
             actions={
               <div>
@@ -229,8 +229,8 @@ export default function Dashboard() {
                 fallBack
               />
             </Content.Card>
-          </SubPage>
-        </AppShell>
+          </Content.SubPage>
+        </Content.AppShell>
       </main>
 
       <CreateEmployeeModal
