@@ -10,7 +10,6 @@
     "@phosphor-icons/react": "^2.0.6",
     "date-fns": "^2.29.2",
     "dayjs": "^1.11.7",
-    "embla-carousel-react": "^7.0.9",
     "formik": "^2.2.9",
     "idb-keyval": "^6.2.0",
     "nanoid": "^4.0.2",
