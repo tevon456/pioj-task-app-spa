@@ -2,10 +2,10 @@ import "styled-components/macro";
 
 import * as yup from "yup";
 
-import { FormField, UICore } from "../../../../components";
+import { FormField, UICore } from "../components";
 
 import { Formik } from "formik";
-import { db } from "../../../../utils";
+import { db } from "../utils";
 import { toast } from "sonner";
 
 const CreateEmployeeSchema = yup.object().shape({

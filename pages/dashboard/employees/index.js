@@ -19,9 +19,9 @@ import { useDialog, useRender } from "../../../hooks";
 import { useEffect, useState } from "react";
 import { parse } from "date-fns";
 import CreateEmployeeForm from "./forms/CreateEmployeeForm";
+import UpdateEmployeeForm from "./forms/UpdateEmployeeForm";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import UpdateEmployeeForm from "./forms/UpdateEmployeeForm";
 
 export default function Dashboard() {
   const router = useRouter();

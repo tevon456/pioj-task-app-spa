@@ -2,14 +2,14 @@ import "styled-components/macro";
 
 import * as yup from "yup";
 
-import { FormField, UICore } from "../../../components";
+import { FormField, UICore } from "../components";
 import { useEffect, useState } from "react";
 
 import { Formik } from "formik";
-import { db } from "../../../utils";
+import { db } from "../utils";
 import { toast } from "sonner";
 
-const CreateTaskSchema = yup.object().shape({
+const UpdateTaskSchema = yup.object().shape({
   title: yup.string().required(),
   status: yup
     .string()
@@ -27,7 +27,7 @@ const initialValues = {
   employeeId: null,
 };
 
-function CreateTaskForm({ onSuccess = () => {} }) {
+function UpdateTaskForm({ onSuccess = () => {}, id, data }) {
   const [options, setOptions] = useState([]);
 
   useEffect(async () => {
@@ -41,12 +41,13 @@ function CreateTaskForm({ onSuccess = () => {} }) {
 
   return (
     <Formik
-      initialValues={initialValues}
-      validationSchema={CreateTaskSchema}
+      initialValues={data || initialValues}
+      enableReinitialize
+      validationSchema={UpdateTaskSchema}
       onSubmit={async (values) => {
         try {
-          await db.task.create(values);
-          toast.success("Task created successfully");
+          await db.task.update(id, values);
+          toast.success("Task updated successfully");
           onSuccess();
         } catch (error) {
           console.log(error);
@@ -95,8 +96,26 @@ function CreateTaskForm({ onSuccess = () => {} }) {
             labelColor="var(--text-light)"
             onChange={handleChange}
             onBlur={handleBlur}
+            value={values.status}
+            label="Status"
+            helper={touched.status && errors.status}
+            helperColor={errors?.status && "var(--danger)"}
+            name="status"
+            mb="var(--space-md)"
+            options={[
+              { text: "not yet started", value: "not yet started" },
+              { text: "in progress", value: "in progress" },
+              { text: "completed", value: "completed" },
+              { text: "past due", value: "past due" },
+            ]}
+          />
+
+          <FormField.Select
+            labelColor="var(--text-light)"
+            onChange={handleChange}
+            onBlur={handleBlur}
             value={values.employeeId}
-            label="Assign Employee"
+            label="Assigned Employee"
             helper={touched.employeeId && errors.employeeId}
             helperColor={errors?.employeeId && "var(--danger)"}
             name="employeeId"
@@ -131,4 +150,4 @@ function CreateTaskForm({ onSuccess = () => {} }) {
   );
 }
 
-export default CreateTaskForm;
+export default UpdateTaskForm;

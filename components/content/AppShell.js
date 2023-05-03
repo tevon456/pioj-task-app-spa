@@ -1,13 +1,12 @@
 import "styled-components/macro";
 
-import { CheckSquareOffset, GearSix, UsersThree } from "@phosphor-icons/react";
-import { useBackground, useWindowSize } from "../../../hooks";
-import { useContext, useEffect, useRef, useState } from "react";
+import { CheckSquareOffset, UsersThree } from "@phosphor-icons/react";
+import { useBackground, useWindowSize } from "../../hooks";
 
 import Link from "next/link";
-import { UICore } from "../../../components";
-import paths from "../../../utils/paths";
+import paths from "../../utils/paths";
 import { useRouter } from "next/router";
+import { Box, Flex, Text } from "../ui-core";
 
 export default function AppShell({ children }) {
   const router = useRouter();
@@ -35,16 +34,16 @@ export default function AppShell({ children }) {
   useBackground("var(--dark-page-background)");
 
   return (
-    <UICore.Flex
+    <Flex
       direction="column"
-      as={UICore.Box}
+      as={Box}
       maxHeight="100vh"
       height="100vh"
       mg="var(--space-none)"
       pd="var(--space-none)"
     >
       {windowSize?.width > 460 && (
-        <UICore.Box
+        <Box
           bg="#18181abf"
           mg="var(--space-none)"
           pd="var(--space-none)"
@@ -60,11 +59,11 @@ export default function AppShell({ children }) {
             z-index: 8;
           `}
         >
-          <UICore.Flex
+          <Flex
             align="center"
             justify={"center"}
             gap="var(--space-sm)"
-            as={UICore.Box}
+            as={Box}
             height="100%"
             mg="var(--space-none)"
             pd="var(--space-none)"
@@ -85,19 +84,19 @@ export default function AppShell({ children }) {
             >
               <UsersThree size={24} color="var(--neutral-200)" />
             </NavBarLinkItem>
-          </UICore.Flex>
-        </UICore.Box>
+          </Flex>
+        </Box>
       )}
 
-      <UICore.Box
+      <Box
         mg="var(--space-none)"
         pd="var(--space-none)"
         css={`
           flex-grow: 1;
         `}
       >
-        <UICore.Flex
-          as={UICore.Box}
+        <Flex
+          as={Box}
           maxHeight="calc(100vh)"
           height="calc(100vh)"
           mg="var(--space-none)"
@@ -106,7 +105,7 @@ export default function AppShell({ children }) {
             overflow-y: hidden;
           `}
         >
-          <UICore.Box
+          <Box
             mg="var(--space-none)"
             pd="var(--space-none)"
             css={`
@@ -115,11 +114,11 @@ export default function AppShell({ children }) {
             `}
           >
             {children}
-          </UICore.Box>
-        </UICore.Flex>
-      </UICore.Box>
+          </Box>
+        </Flex>
+      </Box>
       {windowSize?.width < 460 && <BottomBar />}
-    </UICore.Flex>
+    </Flex>
   );
 }
 
@@ -150,19 +149,19 @@ function NavBarLinkItem({ href = "", text = "", children, ...rest }) {
         `}
         {...rest}
       >
-        <UICore.Flex align="center" justify="center" gap="var(--space-xxxs)">
-          <UICore.Box mg="var(--space-none)" pd="var(--space-xxxxs)">
+        <Flex align="center" justify="center" gap="var(--space-xxxs)">
+          <Box mg="var(--space-none)" pd="var(--space-xxxxs)">
             {children}
-          </UICore.Box>
-          <UICore.Text
+          </Box>
+          <Text
             weight="400"
             color="inherit"
             mt="var(--space-xxxs)"
             mb="var(--space-xxxs)"
           >
             {text}
-          </UICore.Text>
-        </UICore.Flex>
+          </Text>
+        </Flex>
       </a>
     </Link>
   );
@@ -195,11 +194,11 @@ function BottomBarLinkItem({ href = "", text = "", children, ...rest }) {
         `}
         {...rest}
       >
-        <UICore.Flex direction="column">
-          <UICore.Box mg="var(--space-none)" pd="var(--space-xxxs)">
+        <Flex direction="column">
+          <Box mg="var(--space-none)" pd="var(--space-xxxs)">
             {children}
-          </UICore.Box>
-        </UICore.Flex>
+          </Box>
+        </Flex>
       </a>
     </Link>
   );
@@ -228,7 +227,7 @@ function BottomBar() {
   };
 
   return (
-    <UICore.Box
+    <Box
       bg="#18181abf"
       width="calc(100vw - calc(2rem * 2))"
       maxWidth="100vw"
@@ -244,7 +243,7 @@ function BottomBar() {
         z-index: 8;
       `}
     >
-      <UICore.Flex align="center" justify="space-evenly">
+      <Flex align="center" justify="space-evenly">
         <BottomBarLinkItem
           href={paths.DASHBOARD}
           text="Tasks"
@@ -259,7 +258,7 @@ function BottomBar() {
         >
           <UsersThree size={24} color="var(--neutral-500)" />
         </BottomBarLinkItem>
-      </UICore.Flex>
-    </UICore.Box>
+      </Flex>
+    </Box>
   );
 }

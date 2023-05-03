@@ -1,7 +1,7 @@
 import "styled-components/macro";
 
-import { UICore } from "../../../components";
-import { devices } from "../../../utils";
+import { UICore } from "../";
+import { devices } from "../../utils";
 
 export default function SubPage({ title, actions, children }) {
   return (

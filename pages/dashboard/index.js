@@ -1,6 +1,5 @@
 import "styled-components/macro";
 
-import { AppShell, SubPage } from "./components";
 import {
   Article,
   Asterisk,
@@ -20,11 +19,11 @@ import { TinyDansk, db, paths } from "../../utils";
 import { useDialog, useRender } from "../../hooks";
 import { useEffect, useState } from "react";
 
-import CreateTaskForm from "./forms/CreateTaskForm";
+import CreateTaskForm from "../../forms/CreateTaskForm";
 import Head from "next/head";
-import UpdateTaskForm from "./forms/UpdateTaskForm";
-import { useRouter } from "next/router";
+import UpdateTaskForm from "../../forms/UpdateTaskForm";
 import { parse } from "date-fns";
+import { useRouter } from "next/router";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -112,8 +111,8 @@ export default function Dashboard() {
           transition: background var(--animation-time);
         `}
       >
-        <AppShell>
-          <SubPage
+        <Content.AppShell>
+          <Content.SubPage
             title="Tasks"
             actions={
               <div>
@@ -178,8 +177,8 @@ export default function Dashboard() {
                 )}
               </UICore.Flex>
             </Content.Card>
-          </SubPage>
-        </AppShell>
+          </Content.SubPage>
+        </Content.AppShell>
       </main>
       <CreateTaskModal
         name="New Task"
