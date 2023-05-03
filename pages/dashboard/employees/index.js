@@ -17,9 +17,9 @@ import { db, paths } from "../../../utils";
 import { useDialog, useRender } from "../../../hooks";
 import { useEffect, useState } from "react";
 
-import CreateEmployeeForm from "./forms/CreateEmployeeForm";
+import CreateEmployeeForm from "../../../forms/CreateEmployeeForm";
 import Head from "next/head";
-import UpdateEmployeeForm from "./forms/UpdateEmployeeForm";
+import UpdateEmployeeForm from "../../../forms/UpdateEmployeeForm";
 import { parse } from "date-fns";
 import { useRouter } from "next/router";
 
