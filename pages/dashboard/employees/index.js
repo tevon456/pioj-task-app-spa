@@ -438,10 +438,44 @@ export default function Dashboard() {
         name="Delete Employee"
         width="clamp(300px,40vw,500px)"
         close={() => {
+          setMutateEmployeeBody;
           toggleDeleteEmployeeModal();
         }}
         open={isDeleteEmployeeModalOpen}
-      ></DeleteEmployeeModal>
+      >
+        <UICore.Text mt="4px" color="var(--text-light)">
+          Are you sure you want to delete employee{" "}
+          <b style={{ color: "var(--danger)" }}>{mutateEmployeeBody?.name}</b>{" "}
+          with{" "}
+          <b style={{ color: "var(--danger)" }}>
+            {mutateEmployeeBody?.tasks.length} task(s)
+          </b>? This is a permanent action.
+        </UICore.Text>
+
+        <UICore.Flex justify="flex-end">
+          <UICore.Button
+            kind="danger"
+            onClick={async () => {
+              await db.employee.destroy(mutateEmployeeBody?.id);
+              refresh();
+              setMutateEmployeeBody(null);
+              toggleDeleteEmployeeModal();
+            }}
+          >
+            Yes, delete
+          </UICore.Button>
+          <UICore.Space amount={2} />
+          <UICore.Button
+            onClick={() => {
+              setMutateEmployeeBody(null);
+              toggleDeleteEmployeeModal();
+            }}
+            kind="secondary"
+          >
+            Cancel
+          </UICore.Button>
+        </UICore.Flex>
+      </DeleteEmployeeModal>
     </>
   );
 }
