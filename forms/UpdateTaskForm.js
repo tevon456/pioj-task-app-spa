@@ -15,7 +15,10 @@ const UpdateTaskSchema = yup.object().shape({
     .oneOf(["not yet started", "in progress", "completed", "past due"]),
   description: yup.string().required(),
   dueDate: yup.date(),
-  employeeId: yup.string().nullable(),
+  employeeId: yup
+    .string()
+    .nullable()
+    .required("you need to assign an employee this task"),
 });
 
 const initialValues = {
